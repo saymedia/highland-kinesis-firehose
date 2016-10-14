@@ -22,7 +22,9 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'a', 'b', 'c',
+                            {Data: 'a'},
+                            {Data: 'b'},
+                            {Data: 'c'},
                         ],
                     }
                 );
@@ -68,7 +70,8 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'a', 'b',
+                            {Data: 'a'},
+                            {Data: 'b'},
                         ],
                     }
                 );
@@ -77,7 +80,7 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'c',
+                            {Data: 'c'},
                         ],
                     }
                 );
@@ -127,7 +130,9 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'a', 'b', 'c',
+                            {Data: 'a'},
+                            {Data: 'b'},
+                            {Data: 'c'},
                         ],
                     }
                 );
@@ -222,7 +227,8 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'a', 'b',
+                            {Data: 'a'},
+                            {Data: 'b'},
                         ],
                     }
                 );
@@ -231,7 +237,8 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'c', 'd',
+                            {Data: 'c'},
+                            {Data: 'd'},
                         ],
                     }
                 );
@@ -240,7 +247,7 @@ describe('toFirehose', function () {
                     {
                         DeliveryStreamName: 'stream',
                         Records: [
-                            'e',
+                            {Data: 'e'},
                         ],
                     }
                 );

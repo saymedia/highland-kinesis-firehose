@@ -7,6 +7,9 @@ function toFirehose(firehose, streamName, opts) {
     var batchNumber = opts.batchNumber || 200;
 
     return _.pipeline(
+        _.map(function (x) {
+            return {Data: x};
+        }),
         _.batchWithTimeOrCount(batchTime, batchNumber),
         _.flatMap(function (batch) {
             var params = {
@@ -22,14 +25,14 @@ function toFirehose(firehose, streamName, opts) {
 
                         if (result.ErrorCode) {
                             throw {
-                                Record: record,
+                                Record: record.Data,
                                 ErrorCode: result.ErrorCode,
                                 ErrorMessage: result.ErrorMessage,
                             };
                         }
                         else {
                             return {
-                                Record: record,
+                                Record: record.Data,
                                 RecordId: result.RecordId,
                             };
                         }
@@ -44,7 +47,7 @@ function toFirehose(firehose, streamName, opts) {
                         // This synthetic error mimicks what a single-item
                         // service failure might look like.
                         throw {
-                            Record: record,
+                            Record: record.Data,
                             ErrorCode: 'InternalFailure',
                             ErrorMessage: 'PutRecordBatch call failed: ' + err.message,
                         };

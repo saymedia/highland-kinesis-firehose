@@ -11,7 +11,7 @@ function toFirehose(firehose, streamName, opts) {
             return {Data: x};
         }),
         _.batchWithTimeOrCount(batchTime, batchNumber),
-        _.flatMap(function (batch) {
+        _.map(function (batch) {
             var params = {
                 DeliveryStreamName: streamName,
                 Records: batch,
